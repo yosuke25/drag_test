@@ -37,6 +37,12 @@
       dragFlag = false;
     }, false);
 
+    // body上からマウスが外れたら
+    document.body.addEventListener('mouseleave', () => {
+      console.log('out');
+      dragFlag = false;
+    }, false);
+
     // body上でマウスが動かされたら
     document.body.addEventListener('mousemove', (event) => {
       // dragFlagが無効ならreturn
@@ -49,7 +55,6 @@
       let oldXY = oldTranslate.slice(10, (oldTranslate.length - 1)).split(', ');
       let oldX = oldXY[0];
       let oldY = oldXY[1];
-      console.log(oldX);
 
       // 新しい位置を計算
       let newX = Number(oldX.slice(0, (oldX.length - 2))) + event.movementX;
