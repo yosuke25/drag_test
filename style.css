@@ -6,10 +6,6 @@ p {
 }
 
 .object {
-  /* ポジションを絶対位置に指定 */
-  position: absolute;
-  /* マージンをautoに指定 */
-  margin: auto;
   /* 小要素のpタグを中央寄せ */
   display: flex;
   align-items: center;
@@ -39,6 +35,10 @@ div#targetObject {
   /* サイズを縦横240ピクセル */
   width: 240px;
   height: 240px;
+  /* ポジションを絶対位置に指定 */
+  position: absolute;
+  /* マージンをautoに指定 */
+  margin: auto;
   /* 縦横中央寄せ */
   top: 0px;
   right: 0px;

@@ -11,8 +11,8 @@
   window.addEventListener('load', () => {
     // dragObjectのDOMを取得
     dragObject = document.getElementById('dragObject');
-    dragObject.style.top = '150px';
-    dragObject.style.left = '150px';
+    // dragObjectを移動
+    dragObject.style.transform = 'translate(150px, 150px)';
     // targetObjectのDOMを取得
     targetObject = document.getElementById('targetObject');
 
@@ -45,16 +45,18 @@
       }
 
       // 古い位置を取得
-      let oldX = dragObject.style.left;
-      let oldY = dragObject.style.top;
+      let oldTranslate = dragObject.style.transform;
+      let oldXY = oldTranslate.slice(10, (oldTranslate.length - 1)).split(', ');
+      let oldX = oldXY[0];
+      let oldY = oldXY[1];
+      console.log(oldX);
 
       // 新しい位置を計算
       let newX = Number(oldX.slice(0, (oldX.length - 2))) + event.movementX;
       let newY = Number(oldY.slice(0, (oldY.length - 2))) + event.movementY;
 
-      // 新しい位置に移動
-      dragObject.style.left = `${newX}px`;
-      dragObject.style.top = `${newY}px`;
+      // // 新しい位置に移動
+      dragObject.style.transform = `translate(${newX}px, ${newY}px)`;
     }, false);
   }
 
