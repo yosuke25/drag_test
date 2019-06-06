@@ -12,7 +12,9 @@
     // dragObjectのDOMを取得
     dragObject = document.getElementById('dragObject');
     // dragObjectを移動
-    dragObject.style.transform = 'translate(150px, 150px)';
+    setStyle(dragObject, {
+      transform: 'translate(150px, 150px)'
+    });
     // targetObjectのDOMを取得
     targetObject = document.getElementById('targetObject');
 
@@ -20,7 +22,7 @@
     standbyDrag();
   }, false)
 
-  // ドラッグの開始を待機
+  // ドラッグの開始等を待機
   function standbyDrag () {
     // ドラッグ出来るかどうか
     let dragFlag = false;
@@ -37,9 +39,9 @@
       dragFlag = false;
     }, false);
 
-    // body上からマウスが外れたら
+    // body上からマウスが出たら
     document.body.addEventListener('mouseleave', () => {
-      console.log('out');
+      console.log('leave');
       dragFlag = false;
     }, false);
 
@@ -61,8 +63,43 @@
       let newY = Number(oldY.slice(0, (oldY.length - 2))) + event.movementY;
 
       // // 新しい位置に移動
-      dragObject.style.transform = `translate(${newX}px, ${newY}px)`;
+      setStyle(dragObject, {
+        transform: `translate(${newX}px, ${newY}px)`
+      });
+
+      // 重なり判定
+      let result = judgeOverlap(event.clientX, event.clientY, targetObject);
+      if (result) {
+        // 背景に明るい青色を指定
+        setStyle(targetObject, {
+          'background-color': 'rgb(77, 189, 249)'
+        });
+      } else {
+        // 背景に青色を指定
+        setStyle(targetObject, {
+          'background-color': '#2595C7'
+        });
+      }
+
     }, false);
+  }
+
+  // 重なり判定
+  function judgeOverlap (x, y, elem) {
+    if ((elem.offsetLeft <= x) && (x <= (elem.offsetWidth + elem.offsetLeft))
+     && (elem.offsetTop <= y) && (y <= (elem.offsetHeight + elem.offsetTop))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // スタイルの設定
+  function setStyle (element, styles) {
+    let keys = Object.keys(styles);
+    for (let i in keys) {
+      element.style[keys[i]] = styles[keys[i]];
+    }
   }
 
 })();
