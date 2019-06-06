@@ -1,0 +1,71 @@
+p {
+  /* 文字の選択を禁止 */
+  user-select: none;
+  /* 文字の移動を禁止 */
+  pointer-events: none;
+}
+
+.object {
+  /* ポジションを絶対位置に指定 */
+  position: absolute;
+  /* マージンをautoに指定 */
+  margin: auto;
+  /* 小要素のpタグを中央寄せ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.object p {
+  /* フォントにサンセリフを指定 */
+  font-family: sans-serif;
+  /* 文字の色を白色に指定 */
+  color: #FFFFFF;
+}
+
+body {
+  /* 全体に表示 */
+  width: 100vw;
+  height: 100vh;
+  /* マージン無し */
+  margin: 0px;
+  /* はみ出た要素は隠す */
+  overflow: hidden;
+  /* 背景にグラデーションを指定 */
+  background: linear-gradient(20deg, #77CBD8, #A4D877);
+}
+
+div#targetObject {
+  /* サイズを縦横240ピクセル */
+  width: 240px;
+  height: 240px;
+  /* 縦横中央寄せ */
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  /* 背景に青色を指定 */
+  background-color: #2595C7;
+  /* 四つ角を120px丸める */
+  border-radius: 120px;
+}
+
+div#targetObject p {
+  /* 文字サイズは64ピクセル */
+  font-size: 128px;
+}
+
+div#dragObject {
+  /* サイズを縦横120ピクセル */
+  width: 120px;
+  height: 120px;
+  /* 背景に赤色を指定 */
+  background-color: #CD2D37;
+  /* 四つ角を60px丸める */
+  border-radius: 60px;
+}
+
+div#dragObject p {
+  /* 文字サイズは64ピクセル */
+  font-size: 64px;
+}
